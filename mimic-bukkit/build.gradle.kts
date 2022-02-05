@@ -35,6 +35,7 @@ repositories {
     flatDir { dir("libs") }
     // Uncomment if you want to get Heroes from maven repo
     //maven(url = "https://nexus.hc.to/content/repositories/pub_snapshots/")
+    maven(url = "https://repo.citizensnpcs.co")
 }
 
 dependencies {
@@ -53,6 +54,8 @@ dependencies {
     compileOnly(rpgplugins.mythicLib)
     compileOnly(rpgplugins.mmoItems) { isTransitive = false }
     compileOnly(rpgplugins.heroes) { isTransitive = false }
+
+    compileOnly(denizenscript.denizen)
 
     // From libs/ directory
     compileOnly(":CustomItemsAPI")

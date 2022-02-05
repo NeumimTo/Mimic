@@ -22,6 +22,7 @@ package ru.endlesscode.mimic
 import co.aikar.commands.PaperCommandManager
 import org.bstats.bukkit.Metrics
 import org.bukkit.Bukkit
+import org.bukkit.event.server.ServerLoadEvent
 import org.bukkit.plugin.ServicePriority
 import org.bukkit.plugin.ServicePriority.*
 import org.bukkit.plugin.java.JavaPlugin
@@ -33,6 +34,7 @@ import ru.endlesscode.mimic.command.ClassSystemSubcommand
 import ru.endlesscode.mimic.command.ItemsSubcommand
 import ru.endlesscode.mimic.command.LevelSystemSubcommand
 import ru.endlesscode.mimic.command.MainCommand
+import ru.endlesscode.mimic.denizen.DenizenScriptBridge
 import ru.endlesscode.mimic.impl.battlelevels.BattleLevelsLevelSystem
 import ru.endlesscode.mimic.impl.customitems.CustomItemsRegistry
 import ru.endlesscode.mimic.impl.heroes.HeroesClassSystem
@@ -114,7 +116,12 @@ public class MimicPlugin : JavaPlugin() {
         pluginHooks("MMOItems", "net.Indyuce.mmoitems.MMOItems") {
             hookItems(::MmoItemsRegistry)
         }
+
+        pluginHooks("Denizen", "com.denizenscript.denizen.Denizen") {
+            DenizenScriptBridge.ínit(this);
+        }
     }
+
 
     private fun pluginHooks(name: String, vararg requiredClasses: String, hooks: () -> Unit) {
         val pluginLoaded = Bukkit.getPluginManager().getPlugin(name) != null
