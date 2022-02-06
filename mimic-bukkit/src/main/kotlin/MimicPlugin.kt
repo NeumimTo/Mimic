@@ -118,8 +118,9 @@ public class MimicPlugin : JavaPlugin() {
         }
 
         pluginHooks("Denizen", "com.denizenscript.denizen.Denizen") {
-            DenizenScriptBridge.ínit(this);
+            DenizenScriptBridge.hook();
         }
+
     }
 
 
